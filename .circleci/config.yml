@@ -3,6 +3,6 @@ orbs:
   cypress: cypress-io/cypress@1.8.0
 
 workflows:
-  test:
+  build:
     jobs:
       - cypress/run
