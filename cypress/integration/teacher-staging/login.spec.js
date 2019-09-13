@@ -9,10 +9,10 @@ describe('login', () => {
   it('can login', () => {
     cy.visit('https://staging.quizus.org');
     // it redirects to login:
-    cy.location('pathname', { timeout: 10000 }).should('eq', '/login');
+    cy.location('pathname').should('eq', '/login');
     cy.get('input[type="email"]').type('test@example.com');
     cy.get('input[type="password"]').type('wrongpassword{enter}');
-    cy.contains('Incorrect username and/or password. Please try again.').should('exist');
+    cy.contains('Incorrect username and/or password. Please try again.', { timeout: 10000 }).should('exist');
 
     cy.get('input[type="password"]').clear();
     cy.get('input[type="password"]').type('password1124{enter}');
