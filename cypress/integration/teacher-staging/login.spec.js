@@ -7,7 +7,7 @@ beforeEach(() => {
 
 describe('login', () => {
   it('can login', () => {
-    cy.visit('https://staging.quizus.org');
+    cy.visit('https://staging.quizushq.org');
     // it redirects to login:
     cy.location('pathname').should('eq', '/login');
     cy.get('input[type="email"]').type('test@example.com');
