@@ -1,3 +1,5 @@
+const { TEACHER_STAGING, DUMMY_EMAIL, DUMMY_PW } = Cypress.env();
+
 beforeEach(() => {
   cy.clearCookies();
   cy.clearLocalStorage();
@@ -7,14 +9,16 @@ beforeEach(() => {
 
 describe('login', () => {
   it('can login', () => {
-    cy.visit('https://staging.quizushq.org');
+    cy.visit(TEACHER_STAGING);
     // it redirects to login:
     cy.location('pathname').should('eq', '/login');
-    cy.get('input[type="email"]').type('test@example.com');
+    cy.get('input[type="email"]').type(DUMMY_EMAIL);
     cy.get('input[type="password"]').type('wrongpassword{enter}');
     cy.contains('Incorrect username and/or password. Please try again.', { timeout: 10000 }).should('exist');
 
     cy.get('input[type="password"]').clear();
-    cy.get('input[type="password"]').type('password1124{enter}');
+    cy.get('input[type="password"]').type(`${DUMMY_PW}{enter}'`);
+    cy.contains('Density').should('not.exist');
+    cy.get('input[type="password"]').should('not.exist');
   });
 });

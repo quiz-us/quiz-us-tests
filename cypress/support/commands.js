@@ -23,3 +23,9 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+const { DUMMY_EMAIL, DUMMY_PW } = Cypress.env();
+
+Cypress.Commands.add('loginTeacher', () => {
+  cy.get('input[type="email"]').type(DUMMY_EMAIL);
+  cy.get('input[type="password"]').type(`${DUMMY_PW}{enter}'`);
+});
