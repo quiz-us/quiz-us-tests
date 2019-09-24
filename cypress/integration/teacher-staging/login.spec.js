@@ -18,7 +18,6 @@ describe('login', () => {
 
     cy.get('input[type="password"]').clear();
     cy.get('input[type="password"]').type(`${DUMMY_PW}{enter}'`);
-    cy.contains('Density').should('not.exist');
-    cy.get('input[type="password"]').should('not.exist');
+    cy.location('pathname').should('eq', '/');
   });
 });

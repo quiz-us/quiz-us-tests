@@ -1,15 +1,42 @@
 const { TEACHER_STAGING } = Cypress.env();
 
-beforeEach(() => {
-  cy.clearCookies();
-  cy.clearLocalStorage();
-  // deletes auth token, effectively logging user out:
-  indexedDB.deleteDatabase('localforage');
-});
 
 describe('creating a question', () => {
-  it('can login', () => {
+  before(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    // deletes auth token, effectively logging user out:
+    indexedDB.deleteDatabase('localforage');
     cy.visit(TEACHER_STAGING);
     cy.loginTeacher();
   });
+  beforeEach(() => {
+    cy.get("button[aria-label='menu']").click();
+    cy.contains('Deck Creator').click({ force: true });
+    cy.location('pathname').should('eq', '/deck-creator');
+  });
+
+  it('can create a free response question', () => {
+    // select Free Response
+    cy.get('#select-questionType').click();
+    cy.get("li[data-value='Free Response']").click();
+
+    // select Standard
+    cy.get('#select-standardId').click();
+    cy.contains('8.5(C):').click();
+
+    // fill out multiple tags
+    cy.get("input[placeholder='Add one or more tag(s)']").type('elements{enter}');
+    cy.get("input[placeholder='Add one or more tag(s)']").type('Periodic Table{enter}');
+
+    // fill out question
+    cy.get("div[data-slate-editor='true']").first().type('What is the symbol for helium?');
+    // fill out question
+    cy.get("div[data-slate-editor='true']").last().type('The symbol for helium is He.');
+
+    cy.get("button[type='submit']").click();
+    cy.contains('No cards in this deck yet').should('not.exist');
+  });
+
+  // it('displays feedback if all required fields are not submitted');
 });
