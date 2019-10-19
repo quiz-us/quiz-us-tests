@@ -1,8 +1,10 @@
 {
   "projectId": "op4obn",
   "env": {
-    "TEACHER_STAGING": "https://staging.quizushq.org/login",
+    "TEACHER_STAGING": "https://staging.quizushq.org",
+    "STUDENT_STAGING": "https://staging.quizus.org",
     "DUMMY_EMAIL": "test@example.com",
-    "DUMMY_PW": "password1124"
+    "DUMMY_PW": "password1124",
+    "DUMMY_QR": "c6ea4058b513b3ed"
   }
 }
