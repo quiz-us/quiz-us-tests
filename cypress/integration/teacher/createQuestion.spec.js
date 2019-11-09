@@ -33,13 +33,13 @@ describe('creating a question', () => {
     );
 
     // fill out question
-    cy.get("div[data-slate-editor='true']")
-      .first()
-      .type('What is the symbol for helium?');
+    const questionEditor = cy.get("div[data-slate-editor='true']").first();
+    questionEditor.click();
+    questionEditor.type('What is the symbol for helium?');
     // fill out question
-    cy.get("div[data-slate-editor='true']")
-      .last()
-      .type('The symbol for helium is He.');
+    const answerEditor = cy.get("div[data-slate-editor='true']").last();
+    answerEditor.click();
+    answerEditor.type('The symbol for helium is He.');
 
     cy.get("button[type='submit']").click();
     cy.contains('No cards in this deck yet').should('not.exist');
