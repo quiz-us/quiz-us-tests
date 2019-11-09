@@ -16,6 +16,6 @@ describe('login', () => {
     cy.contains('Use QR Login').click();
     cy.get("input[name='qrTextInput'").type(DUMMY_QR);
     cy.get("button[type='submit']").click();
-    cy.location('pathname').should('eq', '/');
+    cy.location('pathname', { timeout: 10000 }).should('eq', '/');
   });
 });

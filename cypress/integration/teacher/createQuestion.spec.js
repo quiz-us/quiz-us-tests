@@ -1,6 +1,5 @@
 const { TEACHER_STAGING } = Cypress.env();
 
-
 describe('creating a question', () => {
   before(() => {
     cy.clearCookies();
@@ -18,21 +17,29 @@ describe('creating a question', () => {
 
   it('can create a free response question', () => {
     // select Free Response
-    cy.get('#select-questionType').click();
+    cy.contains('Multiple Choice').click();
     cy.get("li[data-value='Free Response']").click();
 
     // select Standard
-    cy.get('#select-standardId').click();
-    cy.contains('8.5(C):').click();
+    cy.get('#mui-component-select-standardId').click();
+    cy.contains('8.5(C)').click();
 
     // fill out multiple tags
-    cy.get("input[placeholder='Add one or more tag(s)']").type('elements{enter}');
-    cy.get("input[placeholder='Add one or more tag(s)']").type('Periodic Table{enter}');
+    cy.get("input[placeholder='Add one or more tag(s)']").type(
+      'elements{enter}'
+    );
+    cy.get("input[placeholder='Add one or more tag(s)']").type(
+      'Periodic Table{enter}'
+    );
 
     // fill out question
-    cy.get("div[data-slate-editor='true']").first().type('What is the symbol for helium?');
+    cy.get("div[data-slate-editor='true']")
+      .first()
+      .type('What is the symbol for helium?');
     // fill out question
-    cy.get("div[data-slate-editor='true']").last().type('The symbol for helium is He.');
+    cy.get("div[data-slate-editor='true']")
+      .last()
+      .type('The symbol for helium is He.');
 
     cy.get("button[type='submit']").click();
     cy.contains('No cards in this deck yet').should('not.exist');
