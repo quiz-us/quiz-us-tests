@@ -18,7 +18,7 @@ describe('login', () => {
     });
     cy.visit(STUDENT_STAGING);
     // it redirects to login:
-    cy.location('pathname').should('eq', '/login');
+    cy.location('pathname', { timeout: 10000 }).should('eq', '/login');
 
     cy.contains('Use QR Login').click();
     cy.get("input[name='qrTextInput'").type(DUMMY_QR);
