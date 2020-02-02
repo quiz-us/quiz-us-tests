@@ -27,6 +27,6 @@ const { DUMMY_EMAIL, DUMMY_PW } = Cypress.env();
 
 Cypress.Commands.add('loginTeacher', () => {
   cy.get('input[type="email"]').type(DUMMY_EMAIL);
-  cy.get('input[type="password"]').type(`${DUMMY_PW}{enter}'`);
+  cy.get('input[type="password"]').type(`${DUMMY_PW}{enter}`);
   cy.location('pathname', { timeout: 10000 }).should('eq', '/');
 });

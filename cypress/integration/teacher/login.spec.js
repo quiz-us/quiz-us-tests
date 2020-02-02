@@ -14,7 +14,9 @@ describe('login', () => {
     cy.location('pathname').should('eq', '/login');
     cy.get('input[type="email"]').type(DUMMY_EMAIL);
     cy.get('input[type="password"]').type('wrongpassword{enter}');
-    cy.contains('Incorrect username and/or password. Please try again.', { timeout: 10000 }).should('exist');
+    cy.contains('Incorrect username and/or password. Please try again.', {
+      timeout: 10000,
+    }).should('exist');
 
     cy.get('input[type="password"]').clear();
     cy.get('input[type="password"]').type(`${DUMMY_PW}{enter}'`);
