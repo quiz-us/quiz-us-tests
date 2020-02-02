@@ -1,13 +1,12 @@
 const { TEACHER_STAGING, DUMMY_EMAIL, DUMMY_PW } = Cypress.env();
 
-beforeEach(() => {
-  cy.clearCookies();
-  cy.clearLocalStorage();
-  // deletes auth token, effectively logging user out:
-  indexedDB.deleteDatabase('localforage');
-});
-
 describe('login', () => {
+  beforeEach(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    // deletes auth token, effectively logging user out:
+    indexedDB.deleteDatabase('localforage');
+  });
   it('can login', () => {
     cy.visit(TEACHER_STAGING);
     // it redirects to login:

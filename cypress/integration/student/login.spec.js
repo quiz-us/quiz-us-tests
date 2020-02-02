@@ -1,13 +1,12 @@
 const { DUMMY_QR, STUDENT_STAGING } = Cypress.env();
 
-beforeEach(() => {
-  cy.clearCookies();
-  cy.clearLocalStorage();
-  // deletes auth token, effectively logging user out:
-  indexedDB.deleteDatabase('localforage');
-});
-
 describe('login', () => {
+  beforeEach(() => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
+    // deletes auth token, effectively logging user out:
+    indexedDB.deleteDatabase('localforage');
+  });
   it('can log in using qr code', () => {
     cy.on('uncaught:exception', err => {
       console.log('Uncaught exception occured in qr code spec:', err.message);
