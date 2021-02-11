@@ -20,6 +20,6 @@
     "eslint-plugin-react-hooks": "^1.7.0"
   },
   "dependencies": {
-    "faker": "^4.1.0"
+    "faker": "^5.4.0"
   }
 }
