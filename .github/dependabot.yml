@@ -1,0 +1,31 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: cypress
+    versions:
+    - 6.3.0
+    - 6.4.0
+    - 6.5.0
+    - 6.6.0
+    - 6.7.1
+    - 6.8.0
+    - 7.0.0
+    - 7.0.1
+    - 7.1.0
+  - dependency-name: faker
+    versions:
+    - 5.2.0
+    - 5.3.1
+    - 5.4.0
+    - 5.5.0
+    - 5.5.1
+    - 5.5.2
+  - dependency-name: eslint-plugin-react
+    versions:
+    - 7.22.0
+    - 7.23.1
